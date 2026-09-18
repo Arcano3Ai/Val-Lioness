@@ -10,34 +10,96 @@ function normalizeText(text = '') {
     .trim();
 }
 
+const TAROT_CARDS = [
+  {
+    name: "XVII · La Estrella",
+    element: "Aire / Esperanza",
+    message: "La calma regresa después de cualquier tormenta. Es momento de confiar plenamente en el flujo de la vida, sanar viejas heridas y permitir que tu luz interior brille con seguridad.",
+    advice: "Decreta hoy: 'Confío en mi guía divina y en mi poder de renacimiento'."
+  },
+  {
+    name: "III · La Emperatriz",
+    element: "Tierra / Abundancia",
+    message: "Estás en un ciclo de fertilidad creativa, magnetismo y nutrición espiritual. Abre tus brazos para recibir aquello que con tanto amor has sembrado.",
+    advice: "Conecta con el placer de cuidarte y honrar tu templo corporal."
+  },
+  {
+    name: "XIX · El Sol",
+    element: "Fuego / Claridad",
+    message: "La sombra se disipa y la verdad se revela con calidez. Este es un recordatorio de que tu energía es vital y capaz de transformar cualquier obstáculo en sabiduría.",
+    advice: "Celebra tus pequeños y grandes logros; la victoria ya es tuya."
+  },
+  {
+    name: "I · El Mago",
+    element: "Mercurio / Manifestación",
+    message: "Todos los elementos necesarios para crear tu nueva realidad están sobre tu mesa sagrada: mente, emoción, espíritu y acción. No esperes el momento perfecto; créalo tú.",
+    advice: "Enfoca tu intención en un solo objetivo y actúa con certeza."
+  },
+  {
+    name: "II · La Suma Sacerdotisa",
+    element: "Agua / Intuición",
+    message: "No busques respuestas afuera de ti. Lo que tu alma necesita saber ya está pulsando en tu silencio. Confía en las señales sutiles y los sueños lúcidos.",
+    advice: "Dedica hoy unos minutos a la meditación o al silencio consciente."
+  },
+  {
+    name: "VIII · La Fuerza",
+    element: "Fuego / Coraje Serena",
+    message: "La verdadera fuerza no nace de la imposición ni del control, sino de la compasión y la ternura con la que abrazas tus propias vulnerabilidades.",
+    advice: "Sé paciente y amorosa contigo misma en este proceso de cambio."
+  },
+  {
+    name: "X · La Rueda de la Fortuna",
+    element: "Éter / Nuevos Ciclos",
+    message: "Un ciclo kármico se cierra para dar paso a un movimiento favorable. Fluye con los giros del destino; cada cambio trae una bendición disfrazada.",
+    advice: "Suelta lo que ya cumplió su ciclo y da la bienvenida a lo nuevo."
+  }
+];
+
 export function processBotQuery(rawQuery = '') {
   const query = normalizeText(rawQuery);
 
   // 1. Saludo inicial
   if (!query || query === 'hola' || query === 'buenas' || query === 'inicio' || query === 'menu') {
     return {
-      text: `¡Hola! Te doy la bienvenida al espacio de **Valery Lioness · Soul Healer** ✨
+      text: `¡Bienvenida a este espacio sagrado! Soy tu guía oracular en **Valery Lioness · Soul Healer** ✨
 
-Un lugar sagrado para comprender, sanar y tomar decisiones desde tu propio poder.
+Un lugar para comprender, sanar y tomar decisiones desde tu verdadero poder interior.
 
-¿En qué podemos acompañarte el día de hoy?`,
-      quickReplies: ['🃏 Tarot y Precios', '🌿 Terapias de Sanación', '📅 Agendar Cita', '💬 WhatsApp']
+¿Te gustaría revelar tu **Carta del Día**, conocer los servicios de Tarot y sanación, o agendar una sesión privada?`,
+      quickReplies: ['🔮 Carta del Día', '🃏 Tarot y Precios', '🌿 Terapias de Sanación', '📅 Agendar Cita']
     };
   }
 
-  // 2. Tarot y lecturas
-  if (query.includes('tarot') || query.includes('lectura') || query.includes('carta') || query.includes('oraculo')) {
+  // 2. Oráculo / Carta del Día
+  if (query.includes('carta del dia') || query.includes('oraculo') || query.includes('tirada') || query.includes('mensaje del alma')) {
+    const card = TAROT_CARDS[Math.floor(Math.random() * TAROT_CARDS.length)];
+    return {
+      text: `✨ **Tu Mensaje del Oráculo para Hoy:**
+
+🎴 **${card.name}** *(Frecuencia: ${card.element})*
+
+«${card.message}»
+
+🕯️ **Consejo de Valery:** ${card.advice}
+
+*(Esta es una lectura oracular breve. Para profundizar en tu situación personal, amor, camino de vida o bloqueos, puedes agendar tu lectura completa con Valery).*`,
+      quickReplies: ['📅 Agendar Tarot ($249 Promo)', '🔮 Otra Carta', '💬 Consultar por WhatsApp']
+    };
+  }
+
+  // 3. Tarot y lecturas
+  if (query.includes('tarot') || query.includes('lectura') || query.includes('precio tarot')) {
     return {
       text: `**Lecturas de Tarot & Orientación:**
-• **Tarot:** $250 MXN
-• **Tarot Terapéutico:** $550 MXN
-• **Tarot Terapéutico (Promoción):** $249 MXN
-• **Consulta presencial:** $400 MXN
+• **Tarot Terapéutico (Promoción Especial):** $249 MXN
+• **Tarot General:** $250 MXN
+• **Tarot Terapéutico Completo:** $550 MXN
+• **Consulta Presencial (Monterrey):** $400 MXN
 
-Todas las sesiones están enfocadas en brindarte claridad, dirección y equilibrio emocional.
+Sesiones canalizadas para brindarte dirección, claridad emocional y respuestas concretas.
 
-¿Deseas agendar tu sesión o tienes alguna duda específica?`,
-      quickReplies: ['📅 Agendar Cita', '🌿 Terapias de Sanación', '💬 WhatsApp']
+¿Deseas agendar tu espacio o consultar dudas con Valery?`,
+      quickReplies: ['📅 Agendar Cita', '🔮 Carta del Día', '💬 WhatsApp']
     };
   }
 
