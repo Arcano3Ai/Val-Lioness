@@ -23,8 +23,14 @@ export class NumaBotWidget {
     launcher.setAttribute('role', 'button');
     launcher.setAttribute('aria-label', 'Abrir Asistente Valery Lioness');
     launcher.innerHTML = `
-      <div class="numa-bot-launcher-icon">
-        <span style="font-size: 1.25rem;">🔮</span>
+      <div class="numa-bot-launcher-icon vl-mystic-orb">
+        <div class="vl-orb-ring"></div>
+        <div class="vl-orb-sphere">
+          <svg class="vl-orb-symbol" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <div class="vl-orb-shine"></div>
+        </div>
       </div>
       <div class="numa-bot-launcher-text">
         <span class="numa-bot-launcher-title">Valery Lioness</span>
@@ -41,8 +47,13 @@ export class NumaBotWidget {
     chatWindow.innerHTML = `
       <header class="numa-bot-header">
         <div class="numa-bot-header-info">
-          <div class="numa-bot-avatar">
-            <span style="font-size: 1.1rem;">✨</span>
+          <div class="numa-bot-avatar vl-mystic-orb-avatar">
+            <div class="vl-orb-sphere" style="width: 28px; height: 28px;">
+              <svg class="vl-orb-symbol" style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <div class="vl-orb-shine"></div>
+            </div>
           </div>
           <div class="numa-bot-header-titles">
             <h4 class="numa-bot-title">Valery Lioness · Asistente</h4>

@@ -31,42 +31,98 @@
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
-.numa-bot-launcher-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--gradient-gold);
-  color: #0A0A0A;
+/* --- ORBE MÍSTICO CELESTIAL DEL BOT --- */
+.numa-bot-launcher-icon.vl-mystic-orb {
+  width: 44px;
+  height: 44px;
+  position: relative;
+  background: transparent;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
 }
 
-.numa-bot-launcher:hover .numa-bot-launcher-icon {
-  transform: scale(1.08);
+/* Anillo orbital dorado con rotación celestial */
+.vl-orb-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(201, 168, 76, 0.6);
+  animation: vlOrbRingSpin 14s linear infinite;
+  pointer-events: none;
 }
 
-.numa-bot-rotating-number {
-  font-family: var(--font-serif-display);
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: #0A0A0A;
-  display: inline-block;
-  user-select: none;
+@keyframes vlOrbRingSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.numa-bot-rotating-number.pulse-num {
-  animation: numaNumPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Esfera de cristal tridimensional mística con respiración de luz */
+.vl-orb-sphere {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #FAF0D4 0%, #E2C068 30%, #8C6518 60%, #153325 85%, #0A1B13 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(201, 168, 76, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -3px 6px rgba(0, 0, 0, 0.65);
+  animation: vlOrbPulse 3.5s ease-in-out infinite;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
-@keyframes numaNumPop {
-  0% { transform: scale(0.4) translateY(-3px); opacity: 0.2; }
-  60% { transform: scale(1.25) translateY(0); opacity: 1; }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
+@keyframes vlOrbPulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(201, 168, 76, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -3px 6px rgba(0, 0, 0, 0.65);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(201, 168, 76, 0.8), inset 0 2px 5px rgba(255, 255, 255, 0.75), inset 0 -3px 6px rgba(0, 0, 0, 0.55);
+    transform: scale(1.04);
+  }
+}
+
+/* Brillo especular superior del cristal (lente / perla) */
+.vl-orb-shine {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 14px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 80%);
+  transform: rotate(-35deg);
+  pointer-events: none;
+}
+
+/* Símbolo sagrado interno (estrella de poder y claridad) */
+.vl-orb-symbol {
+  width: 17px;
+  height: 17px;
+  color: #FAF6EF;
+  filter: drop-shadow(0 0 4px rgba(201, 168, 76, 0.95)) drop-shadow(0 1px 2px rgba(0,0,0,0.8));
+  z-index: 2;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Interacción al hover */
+.numa-bot-launcher:hover .vl-orb-sphere {
+  transform: scale(1.12);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.95), inset 0 2px 6px rgba(255, 255, 255, 0.85);
+}
+
+.numa-bot-launcher:hover .vl-orb-symbol {
+  transform: rotate(45deg) scale(1.18);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+}
+
+.numa-bot-launcher:hover .vl-orb-ring {
+  animation-duration: 4s;
+  border-color: rgba(255, 215, 0, 0.95);
 }
 
 .numa-bot-launcher-text {
