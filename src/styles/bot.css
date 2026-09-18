@@ -6,19 +6,19 @@
 /* --- BOTÓN FLOTANTE / LAUNCHER --- */
 .numa-bot-launcher {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 80px;
+  right: 1.5rem;
   z-index: 1000;
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 18px 8px 10px;
-  background: rgba(15, 15, 15, 0.92);
+  background: rgba(15, 31, 24, 0.95);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 215, 0, 0.35);
+  border: 1px solid rgba(201, 168, 76, 0.4);
   border-radius: 50px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.15);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(201, 168, 76, 0.15);
   color: var(--color-beige-light);
   cursor: pointer;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -497,8 +497,8 @@
 /* --- ADAPTACIÓN RESPONSIVE --- */
 @media (max-width: 640px) {
   .numa-bot-launcher {
-    bottom: 16px;
-    right: 16px;
+    bottom: 72px;
+    right: 1rem;
     padding: 6px 14px 6px 8px;
   }
   .numa-bot-launcher-text {
