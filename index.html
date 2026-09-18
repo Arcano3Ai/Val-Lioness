@@ -12,15 +12,15 @@
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Valery Lioness Â· Soul Healer">
+  <meta property="og:site_name" content="Valery Lioness · Soul Healer">
   <meta property="og:title" content="Valery Lioness | Tarot Terapéutico y Orientación Holística">
   <meta property="og:description"
-    content="Un espacio para comprender, sanar y tomar decisiones desde tu poder. Claridad Â· Equilibrio Â· Transformación.">
+    content="Un espacio para comprender, sanar y tomar decisiones desde tu poder. Claridad · Equilibrio · Transformación.">
   <meta property="og:locale" content="es_MX">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Valery Lioness | Soul Healer">
   <meta name="twitter:description"
-    content="Tarot terapéutico y orientación holística. Monterrey Â· Presencial y Online.">
+    content="Tarot terapéutico y orientación holística. Monterrey · Presencial y Online.">
 
   <link rel="icon" type="image/png" href="./assets/images/LOGO.png">
   <link rel="apple-touch-icon" href="./assets/images/LOGO.png">
@@ -702,7 +702,121 @@
       }
     }
 
-    /* Ocultar elementos NÃœMA no aplicables */
+    /* Control flotante de audio — Bienvenida al Silencio */
+    .vl-audio-pill {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px 6px 8px;
+      background: rgba(15, 31, 24, 0.94);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65), 0 0 15px rgba(201, 168, 76, 0.15);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+    .vl-audio-pill:hover {
+      border-color: var(--color-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.75), 0 0 25px rgba(201, 168, 76, 0.25);
+    }
+    .vl-audio-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gradient-gold);
+      color: #0F1F18;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .vl-audio-btn:hover {
+      transform: scale(1.08);
+    }
+    .vl-audio-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .vl-audio-title {
+      font-family: var(--font-serif-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-beige-light);
+      letter-spacing: 0.05em;
+    }
+    .vl-audio-status {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      color: var(--color-gold);
+      letter-spacing: 0.08em;
+    }
+    .vl-audio-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 14px;
+      margin-left: 2px;
+    }
+    .vl-wave-bar {
+      width: 2.5px;
+      height: 100%;
+      background: var(--color-gold);
+      border-radius: 2px;
+      animation: vlWave 1.2s ease-in-out infinite alternate;
+    }
+    .vl-wave-bar:nth-child(1) { animation-delay: 0s; height: 40%; }
+    .vl-wave-bar:nth-child(2) { animation-delay: 0.25s; height: 90%; }
+    .vl-wave-bar:nth-child(3) { animation-delay: 0.5s; height: 60%; }
+    .vl-audio-pill.is-paused .vl-wave-bar {
+      animation-play-state: paused;
+      opacity: 0.3;
+    }
+    @keyframes vlWave {
+      0% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1); }
+    }
+    .vl-header-audio-btn {
+      background: rgba(201, 168, 76, 0.14);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      color: var(--color-gold);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+    }
+    .vl-header-audio-btn:hover {
+      background: rgba(201, 168, 76, 0.28);
+      border-color: var(--color-gold);
+      transform: scale(1.05);
+    }
+    @media (max-width: 600px) {
+      .vl-audio-pill {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 6px 12px 6px 8px;
+      }
+      .vl-audio-title { display: none; }
+    }
+
+    /* Ocultar elementos NÜMA no aplicables */
     .numa-floating-player,
     #numa-floating-player {
       display: none !important;
@@ -801,7 +915,7 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a href="#inicio" class="header-brand">
-        <img src="./assets/images/LOGO.png" alt="Logo Valery Lioness Â· Soul Healer" class="header-logo-img">
+        <img src="./assets/images/LOGO.png" alt="Logo Valery Lioness · Soul Healer" class="header-logo-img">
         <div class="header-brand-text">
           <span class="brand-name">VALERY LIONESS</span>
           <span class="brand-desc">Soul Healer</span>
@@ -817,6 +931,11 @@
       </nav>
 
       <div class="header-actions">
+        <!-- Botón de Audio en Header -->
+        <button class="vl-header-audio-btn" id="header-audio-toggle-btn" title="Pausar / Reproducir música" aria-label="Control de audio">
+          <span id="header-audio-icon">⏸</span>
+        </button>
+
         <!-- Toggle tema claro/oscuro -->
         <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Cambiar tema">
           <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -845,12 +964,12 @@
         </a>
 
         <!-- Botón Móvil -->
-        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">â˜°</button>
+        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">☰</button>
       </div>
     </div>
   </header>
 
-  <!-- MENÃš MÃ“VIL DRAWER -->
+  <!-- MENÚ MÓVIL DRAWER -->
   <div class="mobile-nav-drawer" id="mobile-nav-drawer">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -891,7 +1010,7 @@
         target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-gold-shimmer"
         style="width: 100%; display: flex; justify-content: center; margin-bottom: 1.25rem;"
         onclick="document.getElementById('mobile-nav-close').click();">
-        âœ¦ AGENDAR CONSULTA POR WHATSAPP
+        ✦ AGENDAR CONSULTA POR WHATSAPP
       </a>
 
       <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
@@ -918,7 +1037,7 @@
         </a>
       </div>
       <div style="text-align: center; font-size: 0.72rem; color: var(--color-text-muted);">
-        <span style="color: var(--color-gold);">@valerylioness</span> Â· Monterrey Â· Presencial & Online
+        <span style="color: var(--color-gold);">@valerylioness</span> · Monterrey · Presencial & Online
       </div>
     </div>
   </div>
@@ -937,16 +1056,16 @@
 
       <div class="container hero-content" style="padding-top: calc(var(--header-height) + 3rem); padding-bottom: 5rem;">
         <!-- Logo VL en el hero -->
-        <img src="./assets/images/LOGO.png" alt="Valery Lioness Â· Soul Healer" class="hero-logo-vl">
+        <img src="./assets/images/LOGO.png" alt="Valery Lioness · Soul Healer" class="hero-logo-vl">
 
-        <p class="hero-eyebrow-vl">âœ¦ &nbsp;Claridad Â· Equilibrio Â· Transformación &nbsp;âœ¦</p>
+        <p class="hero-eyebrow-vl">✦ &nbsp;Claridad · Equilibrio · Transformación &nbsp;✦</p>
 
         <h1 class="hero-title-vl">
           TAROT Y<br>
-          <em>ORIENTACIÃ“N HOLÃ STICA</em>
+          <em>ORIENTACIÓN HOLÍSTICA</em>
         </h1>
 
-        <p class="hero-tagline-vl">Valery Lioness Â· Soul Healer</p>
+        <p class="hero-tagline-vl">Valery Lioness · Soul Healer</p>
 
         <p class="hero-lead-vl">
           "Un espacio para comprender, sanar y tomar decisiones desde tu poder."
@@ -981,7 +1100,7 @@
 
         <div class="vl-featured-grid">
           <div class="vl-featured-card">
-            <div class="vl-featured-card-icon">ðŸƒ </div>
+            <div class="vl-featured-card-icon">🃏 </div>
             <div class="vl-featured-card-name">Tarot Terapéutico</div>
             <div class="vl-featured-card-sub">Desde $249 MXN</div>
           </div>
@@ -991,22 +1110,22 @@
             <div class="vl-featured-card-sub">$250 MXN</div>
           </div>
           <div class="vl-featured-card">
-            <div class="vl-featured-card-icon">ðŸŒ™</div>
+            <div class="vl-featured-card-icon">🌙</div>
             <div class="vl-featured-card-name">Lecturas Personalizadas</div>
             <div class="vl-featured-card-sub">Consultar disponibilidad</div>
           </div>
           <div class="vl-featured-card">
-            <div class="vl-featured-card-icon">ðŸŒ€</div>
+            <div class="vl-featured-card-icon">🌀 </div>
             <div class="vl-featured-card-name">Alineación de Chakras</div>
             <div class="vl-featured-card-sub">$240 MXN</div>
           </div>
           <div class="vl-featured-card">
-            <div class="vl-featured-card-icon">ðŸ¤²</div>
+            <div class="vl-featured-card-icon">🤲</div>
             <div class="vl-featured-card-name">Reiki</div>
             <div class="vl-featured-card-sub">Consultar</div>
           </div>
           <div class="vl-featured-card">
-            <div class="vl-featured-card-icon">ðŸ‘¼</div>
+            <div class="vl-featured-card-icon">👼</div>
             <div class="vl-featured-card-name">Terapia Angelical</div>
             <div class="vl-featured-card-sub">Consultar</div>
           </div>
@@ -1015,7 +1134,7 @@
     </section>
 
     <!-- ======================================================= -->
-    <!--  3. CATÃ LOGO COMPLETO DE SERVICIOS                        -->
+    <!--  3. CATÁLOGO COMPLETO DE SERVICIOS                        -->
     <!-- ======================================================= -->
     <section class="section" id="servicios">
       <div class="container">
@@ -1024,14 +1143,14 @@
           <h2 class="section-title">Todos los Servicios</h2>
           <p class="section-subtitle">
             Un espacio integral de bienestar, sanación y orientación holística.
-            Presencial en Monterrey Â· Online desde cualquier lugar.
+            Presencial en Monterrey · Online desde cualquier lugar.
           </p>
         </div>
 
-        <!-- â”€â”€ CATEGORÃ A: TAROT â”€â”€ -->
+        <!-- ── CATEGORÍA: TAROT ── -->
         <div style="margin-bottom: 4rem;">
           <div class="vl-cat-header">
-            <h3>ðŸƒ Tarot</h3>
+            <h3>🃏 Tarot</h3>
           </div>
           <div class="vl-services-grid">
 
@@ -1104,10 +1223,10 @@
           </div>
         </div>
 
-        <!-- â”€â”€ CATEGORÃ A: TERAPIAS ENERGÃ‰TICAS â”€â”€ -->
+        <!-- ── CATEGORÍA: TERAPIAS ENERGÉTICAS ── -->
         <div style="margin-bottom: 4rem;">
           <div class="vl-cat-header">
-            <h3>ðŸŒ€ Terapias Energéticas</h3>
+            <h3>🌀 Terapias Energéticas</h3>
           </div>
           <div class="vl-services-grid">
 
@@ -1191,7 +1310,7 @@
 
             <div class="vl-service-card" id="svc-utero">
               <span class="vl-service-category">Terapias Energéticas</span>
-              <h3 class="vl-service-name">Sanación de Ãštero</h3>
+              <h3 class="vl-service-name">Sanación de Útero</h3>
               <p class="vl-service-desc">Trabajo energético femenino para reconectar con el centro creador, sanar
                 heridas del linaje femenino y restaurar la fuerza vital.</p>
               <div class="vl-service-price">
@@ -1231,10 +1350,10 @@
           </div>
         </div>
 
-        <!-- â”€â”€ CATEGORÃ A: BIENESTAR CORPORAL â”€â”€ -->
+        <!-- ── CATEGORÍA: BIENESTAR CORPORAL ── -->
         <div style="margin-bottom: 4rem;">
           <div class="vl-cat-header">
-            <h3>ðŸŒ¿ Bienestar Corporal</h3>
+            <h3>🌿 Bienestar Corporal</h3>
           </div>
           <div class="vl-services-grid">
 
@@ -1258,7 +1377,7 @@
                 tonificar el cuerpo de forma natural.</p>
               <div class="vl-service-price">
                 <span class="price-label">Precio</span>
-                <span class="vl-price-consult">Por confirmar Â· Consultar disponibilidad</span>
+                <span class="vl-price-consult">Por confirmar · Consultar disponibilidad</span>
               </div>
               <a href="https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20Me%20interesa%20la%20Maderoterapia%2C%20%C2%BFpodr%C3%ADas%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
                 target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"
@@ -1272,7 +1391,7 @@
                 energético y aliviar dolencias físicas y emocionales.</p>
               <div class="vl-service-price">
                 <span class="price-label">Precio</span>
-                <span class="vl-price-consult">Por confirmar Â· Consultar disponibilidad</span>
+                <span class="vl-price-consult">Por confirmar · Consultar disponibilidad</span>
               </div>
               <a href="https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20Me%20interesa%20la%20Acupuntura%2C%20%C2%BFpodr%C3%ADas%20darme%20m%C3%A1s%20informaci%C3%B3n%3F"
                 target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"
@@ -1282,7 +1401,7 @@
           </div>
         </div>
 
-        <!-- â”€â”€ CATEGORÃ A: OTROS SERVICIOS â”€â”€ -->
+        <!-- ── CATEGORÍA: OTROS SERVICIOS ── -->
         <div style="margin-bottom: 4rem;">
           <div class="vl-cat-header">
             <h3>â˜½ Otros Servicios</h3>
@@ -1402,7 +1521,7 @@
           <div class="vl-about-photo-wrap">
             <img src="./assets/images/valery_lioness.jpg" alt="Valery Lioness — Soul Healer, Monterrey"
               class="vl-about-photo" loading="lazy">
-            <div class="vl-about-photo-badge">âœ¦ Reiki Master</div>
+            <div class="vl-about-photo-badge">✦ Reiki Master</div>
           </div>
 
           <!-- Texto -->
@@ -1446,13 +1565,13 @@
 
             <div style="margin-top: 1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
               <span
-                style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid var(--color-border-gold); border-radius: var(--radius-full); padding: 0.45rem 1rem; font-size: 0.78rem; color: var(--color-gold); font-family: var(--font-sans); letter-spacing: 0.08em;">âœ¦
+                style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid var(--color-border-gold); border-radius: var(--radius-full); padding: 0.45rem 1rem; font-size: 0.78rem; color: var(--color-gold); font-family: var(--font-sans); letter-spacing: 0.08em;">✦
                 Reiki Master</span>
               <span
-                style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid var(--color-border-gold); border-radius: var(--radius-full); padding: 0.45rem 1rem; font-size: 0.78rem; color: var(--color-gold); font-family: var(--font-sans); letter-spacing: 0.08em;">âœ¦
+                style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid var(--color-border-gold); border-radius: var(--radius-full); padding: 0.45rem 1rem; font-size: 0.78rem; color: var(--color-gold); font-family: var(--font-sans); letter-spacing: 0.08em;">✦
                 Monterrey, N.L.</span>
               <span
-                style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid var(--color-border-gold); border-radius: var(--radius-full); padding: 0.45rem 1rem; font-size: 0.78rem; color: var(--color-gold); font-family: var(--font-sans); letter-spacing: 0.08em;">âœ¦
+                style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid var(--color-border-gold); border-radius: var(--radius-full); padding: 0.45rem 1rem; font-size: 0.78rem; color: var(--color-gold); font-family: var(--font-sans); letter-spacing: 0.08em;">✦
                 Soul Healer</span>
             </div>
           </div>
@@ -1461,12 +1580,12 @@
     </section>
 
     <!-- ======================================================= -->
-    <!--  5. ÁREAS DE ACOMPAÃ‘AMIENTO                               -->
+    <!--  5. ÁREAS DE ACOMPAÑAMIENTO                               -->
     <!-- ======================================================= -->
     <section class="section" id="areas">
       <div class="container">
         <div class="section-header">
-          <span class="eyebrow">Â¿En qué te acompaño?</span>
+          <span class="eyebrow">¿En qué te acompaño?</span>
           <h2 class="section-title">Áreas de Acompañamiento</h2>
           <p class="section-subtitle">
             Un espacio seguro para explorar, sanar y crecer en las áreas que más importan.
@@ -1474,21 +1593,21 @@
         </div>
 
         <div class="vl-areas-grid">
-          <div class="vl-area-tag"><span>ðŸ’•</span>Relaciones</div>
-          <div class="vl-area-tag"><span>ðŸ‘«</span>Pareja</div>
-          <div class="vl-area-tag"><span>ðŸ”—</span>Dependencia emocional</div>
-          <div class="vl-area-tag"><span>ðŸŒŸ</span>Autoestima</div>
-          <div class="vl-area-tag"><span>ðŸŒ±</span>Crecimiento personal</div>
-          <div class="vl-area-tag"><span>ðŸ’Ž</span>Claridad emocional</div>
-          <div class="vl-area-tag"><span>ðŸ¦‹</span>Transformación</div>
-          <div class="vl-area-tag"><span>ðŸŒ•</span>Cierre de ciclos</div>
+          <div class="vl-area-tag"><span>💕</span>Relaciones</div>
+          <div class="vl-area-tag"><span>👫</span>Pareja</div>
+          <div class="vl-area-tag"><span>🔗</span>Dependencia emocional</div>
+          <div class="vl-area-tag"><span>🌟</span>Autoestima</div>
+          <div class="vl-area-tag"><span>🌱</span>Crecimiento personal</div>
+          <div class="vl-area-tag"><span>💎</span>Claridad emocional</div>
+          <div class="vl-area-tag"><span>🦋</span>Transformación</div>
+          <div class="vl-area-tag"><span>🌕</span>Cierre de ciclos</div>
           <div class="vl-area-tag"><span>⚖️</span>Equilibrio energético</div>
         </div>
 
         <!-- Manifiesto / Quote -->
         <div class="vl-manifesto" style="margin-top: 4rem;">
-          <div style="font-size: 2rem; color: var(--color-gold); margin-bottom: 1.5rem; opacity: 0.7;">âœ¦</div>
-          <span class="eyebrow" style="letter-spacing: 0.3em; margin-bottom: 1rem;">Claridad Â· Equilibrio Â·
+          <div style="font-size: 2rem; color: var(--color-gold); margin-bottom: 1.5rem; opacity: 0.7;">✦</div>
+          <span class="eyebrow" style="letter-spacing: 0.3em; margin-bottom: 1rem;">Claridad · Equilibrio ·
             Transformación</span>
           <blockquote class="font-editorial"
             style="font-size: 1.3rem; color: var(--color-beige); line-height: 1.75; margin: 1.5rem 0;">
@@ -1496,14 +1615,14 @@
           </blockquote>
           <div
             style="font-family: var(--font-serif-display); font-size: 0.82rem; letter-spacing: 0.28em; color: var(--color-gold); text-transform: uppercase;">
-            — Valery Lioness Â· Soul Healer
+            — Valery Lioness · Soul Healer
           </div>
         </div>
       </div>
     </section>
 
     <!-- ======================================================= -->
-    <!--  6. PAQUETES DE ACOMPAÃ‘AMIENTO                            -->
+    <!--  6. PAQUETES DE ACOMPAÑAMIENTO                            -->
     <!-- ======================================================= -->
     <section class="section section-alt" id="paquetes">
       <div class="container">
@@ -1527,10 +1646,10 @@
               transformación.
             </p>
             <div class="vl-package-price">$300</div>
-            <div class="vl-package-price-label">MXN Â· por sesión</div>
+            <div class="vl-package-price-label">MXN · por sesión</div>
             <a href="https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20Me%20interesa%20el%20paquete%20de%201%20sesi%C3%B3n%20%28%24300%20MXN%29"
               target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="btn-pkg-1">
-              AGENDAR SESIÃ“N
+              AGENDAR SESIÓN
             </a>
           </div>
 
@@ -1543,7 +1662,7 @@
               Pago por sesión.
             </p>
             <div class="vl-package-price">$2,100</div>
-            <div class="vl-package-price-label">MXN Â· 7 Ã— $300</div>
+            <div class="vl-package-price-label">MXN · 7 × $300</div>
             <a href="https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20Me%20interesa%20el%20paquete%20de%207%20sesiones%20%28%242%2C100%20MXN%29"
               target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="btn-pkg-7">
               AGENDAR PAQUETE
@@ -1552,19 +1671,19 @@
 
           <!-- Paquete 3: 7 sesiones pago único -->
           <div class="vl-package-card featured" id="pkg-7-unico">
-            <div class="vl-package-badge">âœ¦ MEJOR VALOR</div>
-            <span class="vl-package-sessions">7 Sesiones Â· Pago Ãšnico</span>
+            <div class="vl-package-badge">✦ MEJOR VALOR</div>
+            <span class="vl-package-sessions">7 Sesiones · Pago Único</span>
             <h3 class="vl-package-name">Proceso Completo Premium</h3>
             <p class="vl-package-desc">
               Las mismas 7 sesiones de acompañamiento profundo con un ahorro especial al realizar el pago completo por
               adelantado.
             </p>
             <div class="vl-package-price">$1,700</div>
-            <div class="vl-package-price-label">MXN Â· pago único</div>
-            <div class="vl-package-saving">âœ“ Ahorras $400 MXN vs pago por sesión</div>
+            <div class="vl-package-price-label">MXN · pago único</div>
+            <div class="vl-package-saving">✓ Ahorras $400 MXN vs pago por sesión</div>
             <a href="https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20Me%20interesa%20el%20paquete%20de%207%20sesiones%20pago%20%C3%BAnico%20%28%241%2C700%20MXN%29"
               target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-gold-shimmer" id="btn-pkg-7-unico">
-              AGENDAR Â· MEJOR PRECIO
+              AGENDAR · MEJOR PRECIO
             </a>
           </div>
 
@@ -1578,11 +1697,11 @@
     <section class="section vl-cta-section" id="cta-final">
       <div class="container" style="text-align: center;">
         <div class="vl-divider" style="margin: 0 auto 2rem; opacity: 0.6;">
-          <span>âœ¦</span>
+          <span>✦</span>
         </div>
         <span class="eyebrow">Tu momento es ahora</span>
         <h2 class="section-title" style="margin-bottom: 1.25rem;">
-          Â¿Lista para comenzar tu proceso?
+          ¿Lista para comenzar tu proceso?
         </h2>
         <p class="section-subtitle" style="max-width: 600px; margin: 0 auto 2.5rem;">
           Agenda una sesión y encuentra un espacio para escucharte, comprenderte y avanzar.
@@ -1626,14 +1745,14 @@
               <span class="vl-contact-value">+52 81 2065 4457</span>
               <span
                 style="display: block; font-size: 0.75rem; color: #25D366; margin-top: 0.2rem; font-family: var(--font-sans);">Abre
-                WhatsApp â†’</span>
+                WhatsApp →</span>
             </div>
           </a>
 
           <!-- Instagram -->
           <a href="https://www.instagram.com/valerylioness" target="_blank" rel="noopener noreferrer"
             class="vl-contact-link" id="contact-ig-btn">
-            <span class="vl-contact-icon">ðŸ“¸</span>
+            <span class="vl-contact-icon">📸 </span>
             <div>
               <span class="vl-contact-label">Instagram</span>
               <span class="vl-contact-value">@valerylioness</span>
@@ -1643,7 +1762,7 @@
           <!-- Facebook -->
           <a href="https://www.facebook.com/profile.php?id=100084342670530" target="_blank" rel="noopener noreferrer"
             class="vl-contact-link" id="contact-fb-btn">
-            <span class="vl-contact-icon">ðŸ“˜</span>
+            <span class="vl-contact-icon">📖</span>
             <div>
               <span class="vl-contact-label">Facebook</span>
               <span class="vl-contact-value">Valery Lioness</span>
@@ -1654,7 +1773,7 @@
           <div class="vl-contact-link" style="cursor: default;">
             <span class="vl-contact-icon">📍</span>
             <div>
-              <span class="vl-contact-label">Ubicación Â· Modalidad</span>
+              <span class="vl-contact-label">Ubicación · Modalidad</span>
               <span class="vl-contact-value">Monterrey, Nuevo León</span>
               <span
                 style="display: block; font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.2rem; font-family: var(--font-sans);">Presencial
@@ -1698,7 +1817,7 @@
           </div>
           <p class="font-editorial"
             style="font-size: 1rem; color: var(--color-gold-light); margin-bottom: 0.75rem; font-style: italic;">
-            "Claridad Â· Equilibrio Â· Transformación"
+            "Claridad · Equilibrio · Transformación"
           </p>
           <p style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.65; max-width: 280px;">
             Tarot terapéutico para sanar, comprender y avanzar. +7 años acompañando procesos de transformación en
@@ -1773,9 +1892,9 @@
           </a>
           <a href="https://www.instagram.com/valerylioness" target="_blank" rel="noopener noreferrer"
             style="font-family: var(--font-sans); color: var(--color-gold); font-size: 0.88rem; display: flex; align-items: center; gap: 0.4rem; text-decoration: none; margin-bottom: 0.75rem;">
-            ðŸ“¸ @valerylioness
+            📸 @valerylioness
           </a>
-          <div style="font-size: 0.8rem; color: var(--color-text-muted);">📍 Monterrey, N.L. Â· Presencial & Online
+          <div style="font-size: 0.8rem; color: var(--color-text-muted);">📍 Monterrey, N.L. · Presencial & Online
           </div>
           <ul class="footer-links-list" style="margin-top: 1rem;">
             <li><a href="#"
@@ -1790,14 +1909,14 @@
 
       <!-- Footer bottom -->
       <div class="footer-bottom">
-        <div>Â© 2026 Valery Lioness Â· Soul Healer. Todos los derechos reservados. Monterrey, N.L.</div>
-        <div style="color: var(--color-gold);">Claridad Â· Equilibrio Â· Transformación</div>
+        <div>© 2026 Valery Lioness · Soul Healer. Todos los derechos reservados. Monterrey, N.L.</div>
+        <div style="color: var(--color-gold);">Claridad · Equilibrio · Transformación</div>
       </div>
     </div>
   </footer>
 
   <!-- ======================================================= -->
-  <!--  BOTÃ“N FLOTANTE WHATSAPP                                   -->
+  <!--  BOTÓN FLOTANTE WHATSAPP                                   -->
   <!-- ======================================================= -->
   <a href="https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20Quisiera%20agendar%20una%20consulta"
     target="_blank" rel="noopener noreferrer" class="vl-wa-float" id="vl-wa-float-btn"
@@ -1810,10 +1929,28 @@
   </a>
 
   <!-- ======================================================= -->
+  <!--  CONTROL FLOTANTE DE AUDIO — Bienvenida al Silencio         -->
+  <!-- ======================================================= -->
+  <div id="vl-audio-control" class="vl-audio-pill" role="button" aria-label="Control de música de fondo">
+    <button id="vl-audio-toggle-btn" class="vl-audio-btn" aria-label="Pausar o reproducir música">
+      <span id="vl-audio-icon">⏸</span>
+    </button>
+    <div class="vl-audio-info">
+      <span class="vl-audio-title">Bienvenida al Silencio</span>
+      <span class="vl-audio-status" id="vl-audio-status">Sonando ✦</span>
+    </div>
+    <div class="vl-audio-wave" id="vl-audio-wave">
+      <span class="vl-wave-bar"></span>
+      <span class="vl-wave-bar"></span>
+      <span class="vl-wave-bar"></span>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
   <!--  MODALES REMANENTES (estructura preservada, funcional)     -->
   <!-- ======================================================= -->
 
-  <!-- MODAL DE RESPIRACIÃ“N CONSCIENTE (preservado del sistema original) -->
+  <!-- MODAL DE RESPIRACIÓN CONSCIENTE (preservado del sistema original) -->
   <div class="modal-backdrop" id="breathing-modal">
     <div class="modal-content-wrap" style="max-width: 550px; padding: 3rem; text-align: center;">
       <button class="modal-close-btn" id="breathing-close-btn">&times;</button>
@@ -1839,7 +1976,7 @@
     </div>
   </div>
 
-  <!-- MODAL BÃšSQUEDA (preservado, oculto) -->
+  <!-- MODAL BÚSQUEDA (preservado, oculto) -->
   <div class="modal-backdrop" id="search-modal">
     <div class="modal-content-wrap" style="max-width: 640px; padding: 2rem;">
       <button class="modal-close-btn" id="search-close-btn">&times;</button>
@@ -1895,7 +2032,7 @@
       </div>
       <div id="checkout-step-2" style="display: none;"></div>
       <div id="checkout-step-3" style="display: none; text-align: center; padding: 2rem 1rem;">
-        <span class="eyebrow">Â¡Listo!</span>
+        <span class="eyebrow">¡Listo!</span>
         <h3 style="font-family: var(--font-serif-display); font-size: 1.8rem; color: var(--color-beige-light);">Proceso
           completado</h3>
         <p id="checkout-confirmed-folio" style="color: var(--color-gold);">#VL-000000</p>
@@ -1908,7 +2045,7 @@
     <div class="modal-content-wrap" style="max-width: 680px; padding: 2.5rem;">
       <button class="modal-close-btn" id="booking-close-btn">&times;</button>
       <div id="booking-step-1">
-        <span class="eyebrow">Agendamiento Â· Paso 1</span>
+        <span class="eyebrow">Agendamiento · Paso 1</span>
         <h3
           style="font-family: var(--font-serif-display); font-size: 1.5rem; color: var(--color-beige-light); margin-bottom: 1.5rem;">
           Selecciona tu Servicio</h3>
@@ -1925,7 +2062,7 @@
             <option value="sanacion-adicciones">Sanación de Adicciones — $494 MXN</option>
             <option value="sanacion-adn">Sanación del ADN — $550 MXN</option>
             <option value="sanacion-pareja">Sanación de Pareja — $690 MXN</option>
-            <option value="sanacion-utero">Sanación de Ãštero — $725 MXN</option>
+            <option value="sanacion-utero">Sanación de Útero — $725 MXN</option>
             <option value="sesion-777">Sesión 777 — $777 MXN</option>
             <option value="cirugia-cuantica">Cirugía Cuántica Angelical — $793 MXN</option>
             <option value="masaje-holistico">Masaje Holístico Relajante — $850 MXN</option>
@@ -1944,11 +2081,11 @@
           </select>
         </div>
         <div style="margin-top: 2rem; display: flex; justify-content: flex-end;">
-          <button id="booking-next-2" class="btn btn-primary btn-gold-shimmer">SIGUIENTE: FECHA Y HORA â†’</button>
+          <button id="booking-next-2" class="btn btn-primary btn-gold-shimmer">SIGUIENTE: FECHA Y HORA →</button>
         </div>
       </div>
       <div id="booking-step-2" style="display: none;">
-        <span class="eyebrow">Agendamiento Â· Paso 2</span>
+        <span class="eyebrow">Agendamiento · Paso 2</span>
         <h3
           style="font-family: var(--font-serif-display); font-size: 1.5rem; color: var(--color-beige-light); margin-bottom: 1.5rem;">
           Elige Fecha y Horario</h3>
@@ -1962,11 +2099,11 @@
         </div>
         <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
           <button id="booking-back-1" class="btn btn-outline btn-sm">← VOLVER</button>
-          <button id="booking-next-3" class="btn btn-primary btn-gold-shimmer">SIGUIENTE: TUS DATOS â†’</button>
+          <button id="booking-next-3" class="btn btn-primary btn-gold-shimmer">SIGUIENTE: TUS DATOS →</button>
         </div>
       </div>
       <div id="booking-step-3" style="display: none;">
-        <span class="eyebrow">Agendamiento Â· Paso 3</span>
+        <span class="eyebrow">Agendamiento · Paso 3</span>
         <h3
           style="font-family: var(--font-serif-display); font-size: 1.5rem; color: var(--color-beige-light); margin-bottom: 1.5rem;">
           Tus Datos</h3>
@@ -1985,7 +2122,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Â¿En qué área necesitas apoyo? (Opcional):</label>
+          <label class="form-label">¿En qué área necesitas apoyo? (Opcional):</label>
           <textarea id="booking-notes-input" class="form-control" rows="3"
             placeholder="Cuéntame brevemente en qué aspecto de tu vida deseas trabajar..."></textarea>
         </div>
@@ -1997,8 +2134,8 @@
       <div id="booking-step-4" style="display: none; text-align: center; padding: 2rem 1rem;">
         <div
           style="width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-gold); color: #0F1F18; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 0 30px rgba(201,168,76,0.4);">
-          âœ“</div>
-        <span class="eyebrow">Â¡Tu solicitud ha sido registrada!</span>
+          ✓</div>
+        <span class="eyebrow">¡Tu solicitud ha sido registrada!</span>
         <h3
           style="font-family: var(--font-serif-display); font-size: 1.8rem; color: var(--color-beige-light); margin-bottom: 0.75rem;">
           Cita Solicitada</h3>
@@ -2023,7 +2160,7 @@
 
   <!-- Inline script: navegación simple y funcionalidades VL -->
   <script>
-    // â”€â”€ Navegación activa en scroll â”€â”€
+    // ── Navegación activa en scroll ──
     (function () {
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
@@ -2039,7 +2176,7 @@
       sections.forEach(s => observer.observe(s));
     })();
 
-    // â”€â”€ Cerrar menú móvil al clic en enlaces â”€â”€
+    // ── Cerrar menú móvil al clic en enlaces ──
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', () => {
         const closeBtn = document.getElementById('mobile-nav-close');
@@ -2047,7 +2184,7 @@
       });
     });
 
-    // â”€â”€ Botón flotante WA: mostrar después de 2s â”€â”€
+    // ── Botón flotante WA: mostrar después de 2s ──
     (function () {
       const btn = document.getElementById('vl-wa-float-btn');
       if (!btn) return;
@@ -2067,7 +2204,7 @@
     });
   </script>
 
-  <!-- Audio de Fondo Automático: Bienvenida al Silencio -->
+  <!-- Audio de Fondo: Bienvenida al Silencio con Control Interactivo -->
   <audio id="vl-bg-audio" src="./assets/audio/bienvenida_al_silencio.mp3" preload="auto" loop></audio>
   <script>
     (function () {
@@ -2075,20 +2212,70 @@
       if (!audio) return;
       audio.volume = 0.6;
 
-      function playAudio() {
+      const pill = document.getElementById('vl-audio-control');
+      const pillBtn = document.getElementById('vl-audio-toggle-btn');
+      const pillIcon = document.getElementById('vl-audio-icon');
+      const pillStatus = document.getElementById('vl-audio-status');
+      const headerBtn = document.getElementById('header-audio-toggle-btn');
+      const headerIcon = document.getElementById('header-audio-icon');
+
+      function updateUI(isPlaying) {
+        if (isPlaying) {
+          if (pill) pill.classList.remove('is-paused');
+          if (pillIcon) pillIcon.textContent = '⏸';
+          if (pillStatus) pillStatus.textContent = 'Sonando ✦';
+          if (headerIcon) headerIcon.textContent = '⏸';
+          if (headerBtn) headerBtn.setAttribute('title', 'Pausar música');
+        } else {
+          if (pill) pill.classList.add('is-paused');
+          if (pillIcon) pillIcon.textContent = '▶';
+          if (pillStatus) pillStatus.textContent = 'Pausado';
+          if (headerIcon) headerIcon.textContent = '▶';
+          if (headerBtn) headerBtn.setAttribute('title', 'Reproducir música');
+        }
+      }
+
+      function togglePlay() {
+        if (audio.paused) {
+          audio.play().then(() => updateUI(true)).catch(() => {});
+        } else {
+          audio.pause();
+          updateUI(false);
+        }
+      }
+
+      if (pill) {
+        pill.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePlay();
+        });
+      }
+      if (headerBtn) {
+        headerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePlay();
+        });
+      }
+
+      audio.addEventListener('play', () => updateUI(true));
+      audio.addEventListener('pause', () => updateUI(false));
+
+      // Iniciar automáticamente o al primer gesto del usuario
+      function startOnInteraction() {
         audio.play().then(() => {
+          updateUI(true);
           ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
-            window.removeEventListener(evt, playAudio);
+            window.removeEventListener(evt, startOnInteraction);
           });
         }).catch(() => {});
       }
 
       const p = audio.play();
       if (p !== undefined) {
-        p.catch(() => {
-          // Fallback por políticas del navegador: inicia al primer toque o interacción
+        p.then(() => updateUI(true)).catch(() => {
+          updateUI(false);
           ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
-            window.addEventListener(evt, playAudio, { once: true, passive: true });
+            window.addEventListener(evt, startOnInteraction, { once: true, passive: true });
           });
         });
       }
