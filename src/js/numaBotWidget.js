@@ -2,48 +2,18 @@ import { processBotQuery } from './numaBotEngine.js';
 
 export class NumaBotWidget {
   constructor(options = {}) {
-    this.onOpenProduct = options.onOpenProduct || (() => {});
-    this.onAddToCart = options.onAddToCart || (() => {});
     this.isOpen = false;
     this.messages = [];
 
     this.initDOM();
     this.bindEvents();
     this.sendInitialGreeting();
-    this.startNumberCycle();
   }
 
   /**
-   * Cicla suavemente números sagrados en el launcher del bot
-   */
-  startNumberCycle() {
-    const SACRED_NUMBERS = ['3', '7', '11', '22', '33', '1', '9', '432', '8', '5'];
-    let idx = 0;
-
-    setInterval(() => {
-      idx = (idx + 1) % SACRED_NUMBERS.length;
-      const nextNum = SACRED_NUMBERS[idx];
-      const numEl = document.getElementById('numa-bot-cycling-num');
-      const badgeEl = document.getElementById('numa-bot-badge');
-
-      if (numEl) {
-        numEl.classList.remove('pulse-num');
-        void numEl.offsetWidth; // Reflow para reiniciar la animación
-        numEl.textContent = nextNum;
-        numEl.classList.add('pulse-num');
-      }
-
-      if (badgeEl) {
-        badgeEl.textContent = `✨ Vibración ${nextNum}`;
-      }
-    }, 2000);
-  }
-
-  /**
-   * Construye el DOM del launcher y la ventana flotante
+   * Construye el DOM del launcher y la ventana flotante de Valery Lioness
    */
   initDOM() {
-    // Si ya existe, no duplicar
     if (document.getElementById('numa-bot-launcher')) return;
 
     // 1. Launcher Flotante
@@ -51,16 +21,16 @@ export class NumaBotWidget {
     launcher.id = 'numa-bot-launcher';
     launcher.className = 'numa-bot-launcher';
     launcher.setAttribute('role', 'button');
-    launcher.setAttribute('aria-label', 'Abrir Oráculo NÜMA');
+    launcher.setAttribute('aria-label', 'Abrir Asistente Valery Lioness');
     launcher.innerHTML = `
       <div class="numa-bot-launcher-icon">
-        <span class="numa-bot-rotating-number pulse-num" id="numa-bot-cycling-num">3</span>
+        <span style="font-size: 1.25rem;">🔮</span>
       </div>
       <div class="numa-bot-launcher-text">
-        <span class="numa-bot-launcher-title">Oráculo NÜMA</span>
-        <span class="numa-bot-launcher-sub">Frecuencia Sagrada & Asistente</span>
+        <span class="numa-bot-launcher-title">Valery Lioness</span>
+        <span class="numa-bot-launcher-sub">Tarot & Orientación</span>
       </div>
-      <span class="numa-bot-badge" id="numa-bot-badge">✨ Vibración 3</span>
+      <span class="numa-bot-badge" id="numa-bot-badge">✦ Online</span>
     `;
 
     // 2. Ventana de Chat Flotante
@@ -72,15 +42,13 @@ export class NumaBotWidget {
       <header class="numa-bot-header">
         <div class="numa-bot-header-info">
           <div class="numa-bot-avatar">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
+            <span style="font-size: 1.1rem;">✨</span>
           </div>
           <div class="numa-bot-header-titles">
-            <h4 class="numa-bot-title">Oráculo NÜMA</h4>
+            <h4 class="numa-bot-title">Valery Lioness · Asistente</h4>
             <div class="numa-bot-status">
               <span class="numa-bot-status-dot"></span>
-              <span>Sintonizado en vivo</span>
+              <span>Orientación Holística & Tarot</span>
             </div>
           </div>
         </div>
@@ -110,7 +78,7 @@ export class NumaBotWidget {
             type="text"
             id="numa-bot-input"
             class="numa-bot-input"
-            placeholder="Escribe tu fecha natal o pregúntame por un producto..."
+            placeholder="Escribe tu consulta o pide información..."
             autocomplete="off"
           />
           <button type="submit" class="numa-bot-send-btn" aria-label="Enviar mensaje">
@@ -182,25 +150,22 @@ export class NumaBotWidget {
 
   sendInitialGreeting() {
     const greeting = processBotQuery('hola');
-    this.appendMessage('bot', greeting.text, greeting.products);
+    this.appendMessage('bot', greeting.text);
     this.renderQuickReplies(greeting.quickReplies);
   }
 
   handleUserMessage(text) {
-    // 1. Mensaje del usuario
     this.appendMessage('user', text);
-    this.renderQuickReplies([]); // Ocultar temporalmente chips
+    this.renderQuickReplies([]);
 
-    // 2. Indicador de escritura animado
     this.showTypingIndicator();
 
-    // 3. Procesar consulta con motor local (respuesta tras breve retardo para sensación natural)
     setTimeout(() => {
       this.hideTypingIndicator();
       const result = processBotQuery(text);
-      this.appendMessage('bot', result.text, result.products);
+      this.appendMessage('bot', result.text);
       this.renderQuickReplies(result.quickReplies);
-    }, 400);
+    }, 350);
   }
 
   showTypingIndicator() {
@@ -221,71 +186,21 @@ export class NumaBotWidget {
     if (typing) typing.remove();
   }
 
-  /**
-   * Agrega un mensaje a la lista
-   */
-  appendMessage(role, rawText, products = []) {
+  appendMessage(role, rawText) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `numa-bot-msg ${role}`;
 
     const formattedHtml = this.formatMarkdown(rawText);
-
-    let productsHtml = '';
-    if (products && products.length > 0) {
-      productsHtml = `
-        <div class="numa-bot-products-wrap">
-          ${products.map(p => `
-            <div class="numa-bot-product-card" data-product-id="${p.id}">
-              <img src="${p.image}" alt="${p.name}" class="numa-bot-prod-thumb" onerror="this.src='./assets/images/numa_logo_circle.png'" />
-              <div class="numa-bot-prod-details">
-                <div class="numa-bot-prod-name" title="${p.name}">${p.name}</div>
-                <div class="numa-bot-prod-price">$${p.price} MXN</div>
-              </div>
-              <button class="numa-bot-prod-action" data-action="view" data-product-id="${p.id}">
-                Ver
-              </button>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
     msgDiv.innerHTML = `
       <div class="numa-bot-bubble">
         ${formattedHtml}
-        ${productsHtml}
       </div>
     `;
-
-    // Vincular clics en las tarjetas de producto
-    if (products && products.length > 0) {
-      msgDiv.querySelectorAll('.numa-bot-prod-action').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const prodId = btn.dataset.productId;
-          if (prodId) {
-            this.onOpenProduct(prodId);
-          }
-        });
-      });
-
-      msgDiv.querySelectorAll('.numa-bot-product-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const prodId = card.dataset.productId;
-          if (prodId) {
-            this.onOpenProduct(prodId);
-          }
-        });
-      });
-    }
 
     this.messagesListEl.appendChild(msgDiv);
     this.scrollToBottom();
   }
 
-  /**
-   * Renderiza los botones de respuestas rápidas (Chips)
-   */
   renderQuickReplies(replies = []) {
     this.quickRepliesEl.innerHTML = '';
     if (!replies || replies.length === 0) return;
@@ -296,6 +211,18 @@ export class NumaBotWidget {
       chip.className = 'numa-bot-chip';
       chip.textContent = replyText;
       chip.addEventListener('click', () => {
+        if (replyText.includes('Abrir Formulario') || replyText.includes('Agendar Cita')) {
+          const bookingModal = document.getElementById('booking-modal');
+          if (bookingModal) {
+            bookingModal.classList.add('is-open');
+            this.close();
+            return;
+          }
+        }
+        if (replyText.includes('WhatsApp')) {
+          window.open('https://wa.me/528120654457?text=Hola%20Valery%20%F0%9F%8C%9F%20quisiera%20informaci%C3%B3n%20sobre%20tus%20sesiones', '_blank');
+          return;
+        }
         this.handleUserMessage(replyText);
       });
       this.quickRepliesEl.appendChild(chip);
@@ -304,15 +231,14 @@ export class NumaBotWidget {
     this.scrollToBottom();
   }
 
-  /**
-   * Formateador simple de Markdown para las burbujas
-   */
   formatMarkdown(text = '') {
-    // Escapar tags HTML peligrosos
     let safe = text
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
+
+    // Links [texto](url)
+    safe = safe.replace(/\[(.*?)\]\((https?:\/\/.*?)\)/g, '<a href="$2" target="_blank" style="color: var(--color-gold); text-decoration: underline;">$1</a>');
 
     // Negritas: **texto**
     safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -320,16 +246,15 @@ export class NumaBotWidget {
     // Cursivas: *texto*
     safe = safe.replace(/\*(.*?)\*/g, '<em>$1</em>');
 
-    // Listas con viñeta •
+    // Líneas y viñetas
     const lines = safe.split('\n');
-    let inList = false;
     const processedLines = lines.map(line => {
       const trimmed = line.trim();
       if (trimmed.startsWith('• ')) {
         const itemContent = trimmed.substring(2);
         return `<div style="margin-left: 6px; margin-bottom: 3px;">• ${itemContent}</div>`;
       }
-      return trimmed ? `<p>${trimmed}</p>` : '';
+      return trimmed ? `<p style="margin: 0.25rem 0;">${trimmed}</p>` : '<div style="height: 0.35rem;"></div>';
     });
 
     return processedLines.join('');
